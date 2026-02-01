@@ -20,6 +20,29 @@
     "forceConsistentCasingInFileNames": true,
     "noImplicitAny": false,
     "strictBindCallApply": false,
-    "noFallthroughCasesInSwitch": false
+    "noFallthroughCasesInSwitch": false,
+    "paths": {
+      "@/*": [
+        "src/*"
+      ],
+      "@/constants/*": [
+        "src/constants/*"
+      ],
+      "@/objectValues/*": [
+        "src/objectValues/*"
+      ],
+      "@/types/*": [
+        "src/types/*"
+      ],
+      "@/infra/*": [
+        "src/infra/*"
+      ],
+      "@/lib/*": [
+        "src/lib/*"
+      ],
+      "@/domains/*": [
+        "src/domains/*"
+      ]
+    }
   }
 }
