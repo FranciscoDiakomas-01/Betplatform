@@ -2,19 +2,19 @@ import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
 import helmet from 'helmet';
 import compression from 'compression';
-import { ConsoleLogger, ValidationPipe, VersioningType } from '@nestjs/common';
+import { ConsoleLogger, ValidationPipe } from '@nestjs/common';
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
 import { apiReference } from '@scalar/nestjs-api-reference';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule, {
     logger: new ConsoleLogger({
-      prefix: 'PlinqPay',
+      prefix: 'Wtt',
     }),
   });
 
   const config = new DocumentBuilder()
-    .setTitle('PlinqPay API')
+    .setTitle('Wtt API')
     .setDescription('APi de pagamentos')
     .setVersion('1.0')
     .addBearerAuth()
@@ -24,24 +24,19 @@ async function bootstrap() {
     '/docs',
     apiReference({
       content: document,
-      theme: 'bluePlanet',
-      title: 'PligPaay Doc',
-      pageTitle: 'PligPay',
+      theme: 'deepSpace',
+      title: 'Wtt Doc',
+      pageTitle: 'Wtt',
     }),
   );
   app.enableCors();
   app.use(helmet());
   app.use(compression());
   app.enableShutdownHooks();
-  app.enableVersioning({
-    type: VersioningType.URI,
-  });
   app.useGlobalPipes(
     new ValidationPipe({
       whitelist: true,
       transform: true,
-      forbidUnknownValues: true,
-      forbidNonWhitelisted: true,
     }),
   );
   await app.listen(process.env.PORT ?? 3000);
